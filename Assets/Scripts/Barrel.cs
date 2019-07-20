@@ -57,6 +57,7 @@ public class Barrel : IPingable
 
     public void ResetBarrel()
     {
+        exploded = false;
         Explosion.SetBool("Explode", false);
     }
 
