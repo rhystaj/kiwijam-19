@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public interface IPingable
+public abstract class IPingable : MonoBehaviour
 {
-    void Ping();
+    public abstract void Ping();
 }
