@@ -14,13 +14,31 @@ public class InputManager : MonoBehaviour
     void Update()
     {
 
-        int verticalMovement = (int)Input.GetAxis("Vertical");
-        int horizontalMovement = (int)Input.GetAxis("Horizontal");
+        int verticalMovement = GetAxisDirection("Vertical");
+        int horizontalMovement = GetAxisDirection("Horizontal");
 
-        if (verticalMovement != 0 && horizontalMovement != 0)
+
+
+        Debug.Log("Vertical Movement: " + verticalMovement);
+
+        if (verticalMovement != 0 || horizontalMovement != 0)
+        {
+            Debug.Log("Movement!");
+
             OnDirectionInput(verticalMovement, horizontalMovement);
+            OnInput();
+        }
 
-        OnInput();
+    }
+
+    private int GetAxisDirection(string axis)
+    {
+
+        float axisValue = Input.GetAxis(axis);
+
+        if (axisValue > 0) return 1;
+        else if (axisValue < 0) return -1;
+        else return 0;
 
     }
 
