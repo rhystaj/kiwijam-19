@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] EventGrid grid;
     [SerializeField] TurnEventManager turnEventManager;
+    [SerializeField] UIManager uiManager;
 
     [SerializeField] Vector2 playerStartPosition;
 
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
 
         turnEventManager.ResetTurns();
+        uiManager.HideFailStateScreen();
 
         Vector3 playerPosition = new Vector3(playerStartPosition.x, playerStartPosition.y, 0);
         grid.Player.transform.position = playerPosition;
@@ -44,6 +46,9 @@ public class GameManager : MonoBehaviour
             
     }
 
-
+    public void GameOver()
+    {
+        uiManager.ShowFailStateScreen();
+    }
 
 }

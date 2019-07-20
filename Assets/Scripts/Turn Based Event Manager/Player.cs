@@ -11,18 +11,22 @@ public class Player : IPingable
 
     public override void DetectExplosion(int turn)
     {
-        Debug.Log("Player Dead");
-        //manager.ResetLevel();
+        base.DetectExplosion(turn);
+        GetComponent<SpriteRenderer>().enabled = false;
+        manager.GameOver();
     }
 
     public override void ResetExplodable()
     {
-        
+        base.ResetExplodable();
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public override void Ping(int turn)
     {
-        Debug.Log("Moving Player.");
+
+        if (Destroyed) return;
+
         transform.position += nextMove;
     }
 }
