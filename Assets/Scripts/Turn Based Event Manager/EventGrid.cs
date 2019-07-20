@@ -9,6 +9,8 @@ public class EventGrid : MonoBehaviour
 
     [SerializeField] Player player;
 
+    public Player Player { get { return player; } }
+
     private void OnEnable()
     {
         InputManager.OnDirectionInput += OnMove;
@@ -17,18 +19,6 @@ public class EventGrid : MonoBehaviour
     private void OnDisable()
     {
         InputManager.OnDirectionInput -= OnMove;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-                
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnMove(int horizontalMovment, int verticalMovement)
