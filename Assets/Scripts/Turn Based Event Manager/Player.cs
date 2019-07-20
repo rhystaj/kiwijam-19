@@ -12,7 +12,14 @@ public class Player : IPingable
     public override void DetectExplosion(int turn)
     {
         base.DetectExplosion(turn);
+        GetComponent<SpriteRenderer>().enabled = false;
         manager.GameOver();
+    }
+
+    public override void ResetExplodable()
+    {
+        base.ResetExplodable();
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public override void Ping(int turn)
