@@ -5,6 +5,7 @@ using UnityEngine;
 public class Explodable : MonoBehaviour
 {
     public int explosionRange = 1;
+    bool explodeNextTurn;
     // Start is called before the first frame update
     void Start()
     {
