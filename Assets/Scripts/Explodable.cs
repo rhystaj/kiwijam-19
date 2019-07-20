@@ -4,8 +4,17 @@ using UnityEngine;
 
 public abstract class Explodable : MonoBehaviour
 {
-    public abstract void DetectExplosion(int turn);
 
-    public abstract void ResetExplodable();
+    public bool Destroyed { get; protected set; }
+
+    public virtual void DetectExplosion(int turn)
+    {
+        Destroyed = true;
+    }
+
+    public virtual void ResetExplodable()
+    {
+        Destroyed = false;
+    }
 
 }

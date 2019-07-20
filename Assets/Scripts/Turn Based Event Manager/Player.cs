@@ -7,9 +7,12 @@ public class Player : IPingable
 
     [HideInInspector] public Vector3 nextMove;
 
+    [SerializeField] GameManager manager;
+
     public override void DetectExplosion(int turn)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Player Dead");
+        //manager.ResetLevel();
     }
 
     public override void ResetExplodable()
