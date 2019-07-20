@@ -4,42 +4,54 @@ using UnityEngine;
 
 public class Barrel : IPingable
 {
-    public GameObject Explosion;    //For the Explosion Sprite   
-    private int Status = 0;
+    public Animator Explosion;    //For the Explosion Sprite   
 
-    CharacterController controller;
+    [SerializeField] bool Preprimed;
 
-    public int BarrelStatus()
+    [SerializeField] Vector2 explosionSize;
+
+    [HideInInspector] public int explodeOnTurn = -1;
+
+    private bool exploded = false;
+
+    private void Start()
     {
-        controller = GetComponent<CharacterController>();
-
-        if ((controller.collisionFlags == CollisionFlags.Sides) || (controller.collisionFlags == CollisionFlags.Above) || (controller.collisionFlags == CollisionFlags.Below))
-        {
-            Status = 1;
-        }
-
-        else
-        {
-            Status = 0;
-        }
-
-        return Status;
+        if (Preprimed) explodeOnTurn = 0;
+        Explosion = this.GetComponent<Animator>();
     }
 
-    public override void Ping()
+
+    private void OnDrawGizmos()
     {
-        if (BarrelStatus() == 1)
+        Gizmos.DrawWireCube(transform.position, new Vector3(explosionSize.x, explosionSize.y, 1));
+    }
+
+    public override void Ping(int turn)
+    {
+
+        Debug.Log(name + " " + turn + " " + explodeOnTurn);
+
+        if (turn == explodeOnTurn)
         {
-            GameObject Explode = Instantiate(Explosion) as GameObject;
-            Explode.transform.position = transform.position;
-            Destroy(this.gameObject);
-            this.gameObject.SetActive(false);
+            Explosion.SetBool("Explode", true);
+
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), explosionSize, 0);
+
+            Debug.Log("Colliders: " + colliders.Length);
+
+            foreach (Collider2D collider in colliders)
+            {
+                Barrel barrel = collider.GetComponent<Barrel>();
+                if (barrel != null && !exploded) barrel.explodeOnTurn = turn + 1;
+            }
+
+            exploded = true;
+
+            //gameObject.SetActive(false);
+
         }
 
     }
 
-    private void Explode(Collider2D Self)
-    {
 
-    }
 }

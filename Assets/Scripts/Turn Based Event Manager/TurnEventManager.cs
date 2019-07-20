@@ -12,6 +12,8 @@ public class TurnEventManager : MonoBehaviour
 
     [SerializeField] float cooldownSeconds;
 
+    private int turnNumber = 0;
+
     private float cooldown;
 
     private void Start()
@@ -41,8 +43,10 @@ public class TurnEventManager : MonoBehaviour
 
         if (cooldown > 0) return;
 
+        Debug.Log("Pinging");
         foreach (IPingable pingable in pingables)
-            pingable.Ping();
+            pingable.Ping(turnNumber);
+        turnNumber++;
 
         cooldown = cooldownSeconds;
 
