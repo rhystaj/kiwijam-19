@@ -52,4 +52,9 @@ public class TurnEventManager : MonoBehaviour
 
     }
 
+    public void ResetTurns()
+    {
+        turnNumber = 0;
+    }
+
 }
