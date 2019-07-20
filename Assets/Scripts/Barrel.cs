@@ -24,6 +24,7 @@ private bool exploded = false;
         if (Preprimed) explodeOnTurn = 0;
         Explosion = this.GetComponent<Animator>();
         ExplosionSound = this.GetComponent<AudioSource>();
+        Sprite = this.GetComponent<SpriteRenderer>();
     }
 
 
