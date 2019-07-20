@@ -18,12 +18,8 @@ public class InputManager : MonoBehaviour
         int horizontalMovement = GetAxisDirection("Horizontal");
 
 
-
-        Debug.Log("Vertical Movement: " + verticalMovement);
-
         if (verticalMovement != 0 || horizontalMovement != 0)
         {
-            Debug.Log("Movement!");
 
             OnDirectionInput(verticalMovement, horizontalMovement);
             OnInput();
