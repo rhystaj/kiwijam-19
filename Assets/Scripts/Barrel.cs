@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Barrel : IPingable
 {
-    public GameObject Explosion;    //For the Explosion Sprite   
+    public Animator Explosion;    //For the Explosion Sprite   
 
     [SerializeField] bool Preprimed;
 
@@ -16,7 +16,8 @@ public class Barrel : IPingable
 
     private void Start()
     {
-        if (Preprimed) explodeOnTurn = 0;   
+        if (Preprimed) explodeOnTurn = 0;
+        Explosion = this.GetComponent<Animator>();
     }
 
 
@@ -32,9 +33,7 @@ public class Barrel : IPingable
 
         if (turn == explodeOnTurn)
         {
-            GameObject Explode = Instantiate(Explosion) as GameObject;
-            Explode.transform.position = transform.position;
-
+            Explosion.SetBool("Explode", true);
 
             Collider2D[] colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), explosionSize, 0);
 
@@ -48,7 +47,7 @@ public class Barrel : IPingable
 
             exploded = true;
 
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
 
         }
 
