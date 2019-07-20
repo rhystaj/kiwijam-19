@@ -5,6 +5,7 @@ using UnityEngine;
 public class Barrel : IPingable
 {
     public Animator Explosion;    //For the Explosion Sprite   
+    public AudioClip ExplosionSound;
 
     [SerializeField] bool Preprimed;
 
@@ -18,6 +19,8 @@ public class Barrel : IPingable
     {
         if (Preprimed) explodeOnTurn = 0;
         Explosion = this.GetComponent<Animator>();
+        //ExplosionSound = this.GetComponent<AudioClip>();
+
     }
 
 
@@ -34,6 +37,7 @@ public class Barrel : IPingable
         if (turn == explodeOnTurn)
         {
             Explosion.SetBool("Explode", true);
+            //ExplosionSound.isReadyToPlay()
 
             Collider2D[] colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), explosionSize, 0);
 
@@ -52,6 +56,9 @@ public class Barrel : IPingable
         }
 
     }
+
+    public void ResetBarrel()
+    { }
 
 
 }
