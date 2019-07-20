@@ -24,7 +24,6 @@ public class TurnEventManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Subscribing Take Turn");
         InputManager.OnInput += TakeTurn;
     }
 
@@ -43,7 +42,6 @@ public class TurnEventManager : MonoBehaviour
 
         if (cooldown > 0) return;
 
-        Debug.Log("Pinging");
         foreach (IPingable pingable in pingables)
             pingable.Ping(turnNumber);
         turnNumber++;

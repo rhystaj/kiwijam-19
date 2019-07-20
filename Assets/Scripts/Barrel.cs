@@ -36,7 +36,6 @@ private bool exploded = false;
     public override void Ping(int turn)
     {
 
-        Debug.Log(name + " " + turn + " " + explodeOnTurn);
 
         if (turn == explodeOnTurn)
         {

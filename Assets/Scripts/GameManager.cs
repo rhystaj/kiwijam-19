@@ -35,8 +35,13 @@ public class GameManager : MonoBehaviour
         Vector3 playerPosition = new Vector3(playerStartPosition.x, playerStartPosition.y, 0);
         grid.Player.transform.position = playerPosition;
 
-        foreach (Explodable explodable in grid.GetComponentsInChildren<Explodable>())
+        Debug.Log("Explodables to Reset: " + grid.GetComponentsInChildren<Explodable>().Length);
+
+        foreach (Explodable explodable in grid.GetComponentsInChildren<Explodable>()) {
+            Debug.Log("Explodable: " + explodable.name); 
             explodable.ResetExplodable();
+        }
+            
     }
 
 
