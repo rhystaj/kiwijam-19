@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Wall : IPingable
 {
+
+    public bool Active { get; private set; }
+
     public override void DetectExplosion(int turn)
     {
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
+        base.DetectExplosion(turn);
     }
 
     public override void Ping(int turn)
@@ -19,6 +23,7 @@ public class Wall : IPingable
     {
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
+        base.ResetExplodable();    
     }
 
 }

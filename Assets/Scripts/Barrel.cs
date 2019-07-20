@@ -17,8 +17,6 @@ public class Barrel : IPingable
     [HideInInspector] public int explodeOnTurn = -1;
 
 
-private bool exploded = false;
-
     private void Start()
     {
         if (Preprimed) explodeOnTurn = 0;
@@ -50,10 +48,13 @@ private bool exploded = false;
             foreach (Collider2D collider in colliders)
             {
                 Explodable explodable = collider.GetComponent<Explodable>();
-                if (explodable != null && !exploded) explodable.DetectExplosion(turn);
+                if (explodable != null && !Destroyed)
+                {
+                    explodable.DetectExplosion(turn);
+                }
             }
 
-            exploded = true;
+            base.DetectExplosion(turn);
 
         }
 
@@ -69,10 +70,9 @@ private bool exploded = false;
         {
             explodeOnTurn = -1;
         }
-
-        exploded = false;
         Explosion.SetBool("Explode", false);
         Sprite.color = Col;
+        base.ResetExplodable();
     }
 
     public override void DetectExplosion(int turn)

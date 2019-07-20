@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour
         if (verticalMovement != 0 || horizontalMovement != 0)
         {
 
-            OnDirectionInput(verticalMovement, horizontalMovement);
+            OnDirectionInput(horizontalMovement, verticalMovement);
             OnInput();
         }
 
