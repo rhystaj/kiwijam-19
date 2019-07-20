@@ -5,41 +5,50 @@ using UnityEngine;
 public class Barrel : IPingable
 {
     public GameObject Explosion;    //For the Explosion Sprite   
-    private int Status = 0;
 
-    CharacterController controller;
+    [SerializeField] bool Primed = false;
 
-    public int BarrelStatus()
+    [SerializeField] Vector2 explosionSize;
+
+
+    private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        
+    }
 
-        if ((controller.collisionFlags == CollisionFlags.Sides) || (controller.collisionFlags == CollisionFlags.Above) || (controller.collisionFlags == CollisionFlags.Below))
-        {
-            Status = 1;
-        }
 
-        else
-        {
-            Status = 0;
-        }
-
-        return Status;
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, new Vector3(explosionSize.x, explosionSize.y, 1));
     }
 
     public override void Ping()
     {
-        if (BarrelStatus() == 1)
+
+        Debug.Log(name + ": " + Primed);
+
+        if (Primed)
         {
             GameObject Explode = Instantiate(Explosion) as GameObject;
             Explode.transform.position = transform.position;
-            Destroy(this.gameObject);
+
+
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), explosionSize, 0);
+
+            Debug.Log("Colliders: " + colliders.Length);
+
+            foreach (Collider2D collider in colliders)
+            {
+                Barrel barrel = collider.GetComponent<Barrel>();
+                if (barrel != null) barrel.Primed = true;
+            }
+          
+
             this.gameObject.SetActive(false);
+
         }
 
     }
 
-    private void Explode(Collider2D Self)
-    {
 
-    }
 }

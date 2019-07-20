@@ -41,6 +41,7 @@ public class TurnEventManager : MonoBehaviour
 
         if (cooldown > 0) return;
 
+        Debug.Log("Pinging");
         foreach (IPingable pingable in pingables)
             pingable.Ping();
 
