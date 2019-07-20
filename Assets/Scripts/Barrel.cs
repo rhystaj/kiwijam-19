@@ -14,6 +14,8 @@ public class Barrel : IPingable
 
     [SerializeField] Vector2 explosionSize;
 
+    [SerializeField] GameObject warningSquare;
+
     [HideInInspector] public int explodeOnTurn = -1;
 
 
@@ -23,11 +25,16 @@ public class Barrel : IPingable
         Explosion = this.GetComponent<Animator>();
         ExplosionSound = this.GetComponent<AudioSource>();
         Sprite = this.GetComponent<SpriteRenderer>();
+
+        //warningSquare = Instantiate(warningSquare, transform);
+        //warningSquare.transform.localScale = explosionSize;
+        //warningSquare.SetActive(false);
     }
 
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, new Vector3(explosionSize.x, explosionSize.y, 1));
     }
 
@@ -77,6 +84,7 @@ public class Barrel : IPingable
 
     public override void DetectExplosion(int turn)
     {
+        //warningSquare.SetActive(false);
         explodeOnTurn = turn + 1;
     }
 }

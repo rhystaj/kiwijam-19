@@ -13,6 +13,14 @@ public class EventGrid : MonoBehaviour
 
     private Explodable[,] cells;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        for (int row = 0; row < gridSize.y; row++)
+            for (int col = 0; col < gridSize.x; col++)
+                Gizmos.DrawWireCube(CalculatePositionFromGridLocation(row, col), new Vector3(cellSize, cellSize, 1));
+    }
+
     private Vector2 PlayerGridLocation
     {
         get
@@ -65,7 +73,7 @@ public class EventGrid : MonoBehaviour
 
     private Vector3 CalculatePositionFromGridLocation(int gridRow, int gridColumn)
     {
-        return new Vector3((gridColumn - (gridSize.y / 2)) * cellSize, (gridRow - (gridSize.x / 2)) * cellSize, 0);
+        return new Vector3((gridColumn - (gridSize.x / 2)) * cellSize, (gridRow - (gridSize.y / 2)) * cellSize, 0);
     }
 
     private void OnMove(int horizontalMovment, int verticalMovement)
