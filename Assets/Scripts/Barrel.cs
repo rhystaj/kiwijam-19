@@ -24,6 +24,7 @@ private bool exploded = false;
         if (Preprimed) explodeOnTurn = 0;
         Explosion = this.GetComponent<Animator>();
         ExplosionSound = this.GetComponent<AudioSource>();
+        Sprite = this.GetComponent<SpriteRenderer>();
     }
 
 
@@ -49,8 +50,8 @@ private bool exploded = false;
 
             foreach (Collider2D collider in colliders)
             {
-                Barrel barrel = collider.GetComponent<Barrel>();
-                if (barrel != null && !exploded) barrel.explodeOnTurn = turn + 1;
+                Explodable explodable = collider.GetComponent<Explodable>();
+                if (explodable != null && !exploded) explodable.DetectExplosion(turn);
             }
 
             exploded = true;
@@ -59,7 +60,7 @@ private bool exploded = false;
 
     }
 
-    public void ResetBarrel()
+    public override void ResetExplodable()
     {
         if (Preprimed)
         {
@@ -75,5 +76,8 @@ private bool exploded = false;
         Sprite.color = Col;
     }
 
-
+    public override void DetectExplosion(int turn)
+    {
+        explodeOnTurn = turn + 1;
+    }
 }

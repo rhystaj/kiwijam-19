@@ -2,26 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explodable : MonoBehaviour
+public abstract class Explodable : MonoBehaviour
 {
-    public int explosionRange = 1;
-    bool explodeNextTurn;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public abstract void DetectExplosion(int turn);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void ExplodeBarrel()
-    {
-
-    }
-
+    public abstract void ResetExplodable();
 
 }
