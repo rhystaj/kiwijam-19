@@ -7,20 +7,23 @@ public class Barrel : IPingable
     public Animator Explosion;    //For the Explosion Sprite   
     public AudioSource ExplosionSound;
 
+    private SpriteRenderer Sprite;
+    private Color Col;
+
     [SerializeField] bool Preprimed;
 
     [SerializeField] Vector2 explosionSize;
 
     [HideInInspector] public int explodeOnTurn = -1;
 
-    private bool exploded = false;
+
+private bool exploded = false;
 
     private void Start()
     {
         if (Preprimed) explodeOnTurn = 0;
         Explosion = this.GetComponent<Animator>();
         ExplosionSound = this.GetComponent<AudioSource>();
-
     }
 
 
@@ -36,6 +39,7 @@ public class Barrel : IPingable
 
         if (turn == explodeOnTurn)
         {
+            Col = Sprite.color;
             Explosion.SetBool("Explode", true);
             ExplosionSound.Play();
 
@@ -57,8 +61,18 @@ public class Barrel : IPingable
 
     public void ResetBarrel()
     {
+        if (Preprimed)
+        {
+            explodeOnTurn = 0;
+        }
+        else
+        {
+            explodeOnTurn = -1;
+        }
+
         exploded = false;
         Explosion.SetBool("Explode", false);
+        Sprite.color = Col;
     }
 
 
