@@ -79,7 +79,7 @@ public class EventGrid : MonoBehaviour
         return new Vector3((gridColumn - (gridSize.x / 2)) * cellSize, (gridRow - (gridSize.y / 2)) * cellSize, 0);
     }
 
-    private void OnMove(int horizontalMovment, int verticalMovement)
+    private bool OnMove(int horizontalMovment, int verticalMovement)
     {
 
 
@@ -92,13 +92,15 @@ public class EventGrid : MonoBehaviour
         if ((explodableInDestination != null && !explodableInDestination.Destroyed) || colliderType == Tile.ColliderType.Sprite)
         {
             player.nextMove = Vector3.zero;
-            return;
+            return false;
         }
 
         float deltaX = horizontalMovment * cellSize;
         float deltaY = verticalMovement * cellSize;
 
         player.nextMove = new Vector3(deltaX, deltaY, 0);
+
+        return true;
 
     }
 
