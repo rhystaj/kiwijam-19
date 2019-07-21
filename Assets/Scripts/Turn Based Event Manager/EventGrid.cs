@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EventGrid : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EventGrid : MonoBehaviour
     [SerializeField] int cellSize;
 
     [SerializeField] Player player;
+
+    [SerializeField] Tilemap tilemap;
 
     private Explodable[,] cells;
 
@@ -64,8 +67,8 @@ public class EventGrid : MonoBehaviour
     private Vector2 CalculateGridLocation(Vector3 positionVector)
     {
 
-        int gridRow = (int)(positionVector.y / cellSize) + (gridSize.y / 2);
-        int gridColumn = (int)(positionVector.x / cellSize) + (gridSize.x / 2);
+        int gridRow = Mathf.RoundToInt(positionVector.y / cellSize) + (gridSize.y / 2);
+        int gridColumn = Mathf.RoundToInt(positionVector.x / cellSize) + (gridSize.x / 2);
 
         return new Vector2(gridColumn, gridRow);
 
@@ -83,7 +86,10 @@ public class EventGrid : MonoBehaviour
         Vector2 nextPlayerLocation = PlayerGridLocation + new Vector2(horizontalMovment, verticalMovement);
         Explodable explodableInDestination = cells[(int)nextPlayerLocation.y, (int)nextPlayerLocation.x];
 
-        if (explodableInDestination != null && !explodableInDestination.Destroyed)
+        Tile.ColliderType colliderType = tilemap.GetColliderType(new
+            Vector3Int((int)nextPlayerLocation.x - gridSize.x / 2, (int)nextPlayerLocation.y - gridSize.y / 2, 0));
+   
+        if ((explodableInDestination != null && !explodableInDestination.Destroyed) || colliderType == Tile.ColliderType.Sprite)
         {
             player.nextMove = Vector3.zero;
             return;

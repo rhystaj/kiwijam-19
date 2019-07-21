@@ -10,8 +10,6 @@ public class TurnEventManager : MonoBehaviour
 
     public ICollection<IPingable> pingables;
 
-    [SerializeField] float cooldownSeconds;
-
     private int turnNumber = 0;
 
     private float cooldown;
@@ -34,19 +32,15 @@ public class TurnEventManager : MonoBehaviour
 
     private void Update()
     {
-        cooldown -= Time.deltaTime;
+
     }
 
     private void TakeTurn()
     {
 
-        if (cooldown > 0) return;
-
         foreach (IPingable pingable in pingables)
             pingable.Ping(turnNumber);
         turnNumber++;
-
-        cooldown = cooldownSeconds;
 
     }
 
