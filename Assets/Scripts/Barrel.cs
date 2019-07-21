@@ -109,7 +109,7 @@ public class Barrel : IPingable
     public override void DetectExplosion(int turn)
     {
         //warningSquare.SetActive(false);
-        if (explodeOnTurn != -1) explodeOnTurn = turn + 1;
+        explodeOnTurn = turn + 1;
         ExplosionSquare.GetComponent<SpriteRenderer>().color = ColorExplosion;
     }
 }
