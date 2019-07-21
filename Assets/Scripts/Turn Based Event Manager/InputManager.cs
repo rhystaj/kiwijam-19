@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
     public static event InputReception OnInput;
     public static event InputReception OnReset;
 
-    public delegate void DirectionInput(int verticalMovement, int horizontalMovement);
+    public delegate bool DirectionInput(int verticalMovement, int horizontalMovement);
     public static event DirectionInput OnDirectionInput;
 
     private bool blockInput;
@@ -38,8 +38,8 @@ public class InputManager : MonoBehaviour
 
             blockInput = true;
 
-            OnDirectionInput(horizontalMovement, verticalMovement);
-            OnInput();
+            if(OnDirectionInput(horizontalMovement, verticalMovement))
+                OnInput();
         }
 
     }
