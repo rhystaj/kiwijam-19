@@ -39,7 +39,10 @@ public class TurnEventManager : MonoBehaviour
     {
 
         foreach (IPingable pingable in pingables)
-            pingable.Ping(turnNumber);
+        {
+            Debug.Log(turnNumber + ": " + pingable.name);
+            pingable.RegisterToPing(turnNumber);
+        }
         turnNumber++;
 
     }
