@@ -30,7 +30,7 @@ public class Barrel : IPingable
         Invisble.r = 0;
         Invisble.g = 0;
         Invisble.b = 0;
-
+        
         Explosion = this.GetComponent<Animator>();
         ExplosionSound = this.GetComponent<AudioSource>();
         Sprite = this.GetComponent<SpriteRenderer>();
@@ -66,7 +66,7 @@ public class Barrel : IPingable
         if (turn == explodeOnTurn)
         {
             Col = Sprite.color;
-
+            
             Explosion.SetBool("Explode", true);
             ExplosionSquare.GetComponent<SpriteRenderer>().color = Invisble;
             ExplosionSquare.SetActive(false);
