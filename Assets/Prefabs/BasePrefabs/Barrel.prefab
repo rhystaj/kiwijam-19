@@ -145,6 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Explosion: {fileID: 0}
   ExplosionSound: {fileID: 0}
+  ExplosionArea: {fileID: 816873659630583776, guid: 99bffcda6148e8a42816ad80922f5e53,
+    type: 3}
   Preprimed: 0
   explosionSize: {x: 0, y: 0}
   warningSquare: {fileID: 0}
