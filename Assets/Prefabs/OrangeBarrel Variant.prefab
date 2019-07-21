@@ -10,7 +10,22 @@ PrefabInstance:
     - target: {fileID: 4569025065996494684, guid: f373dc85e86ff6d4597dca9622d655a3,
         type: 3}
       propertyPath: m_Name
-      value: OrangeBarrel
+      value: OrangeBarrel Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439721953415878672, guid: f373dc85e86ff6d4597dca9622d655a3,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439721953415878672, guid: f373dc85e86ff6d4597dca9622d655a3,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.50090635
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439721953415878672, guid: f373dc85e86ff6d4597dca9622d655a3,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4476359211186356575, guid: f373dc85e86ff6d4597dca9622d655a3,
         type: 3}
@@ -67,20 +82,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2439721953415878672, guid: f373dc85e86ff6d4597dca9622d655a3,
+    - target: {fileID: 6511659969712427197, guid: f373dc85e86ff6d4597dca9622d655a3,
         type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2439721953415878672, guid: f373dc85e86ff6d4597dca9622d655a3,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.50090635
-      objectReference: {fileID: 0}
-    - target: {fileID: 2439721953415878672, guid: f373dc85e86ff6d4597dca9622d655a3,
-        type: 3}
-      propertyPath: m_Color.b
+      propertyPath: m_Offset.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511659969712427197, guid: f373dc85e86ff6d4597dca9622d655a3,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.8778105
       objectReference: {fileID: 0}
     - target: {fileID: 7331839719330912851, guid: f373dc85e86ff6d4597dca9622d655a3,
         type: 3}
