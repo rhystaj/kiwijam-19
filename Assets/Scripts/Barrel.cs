@@ -93,6 +93,9 @@ public class Barrel : IPingable
 
     public override void ResetExplodable()
     {
+        base.ResetExplodable();
+        Explosion.SetBool("Explode", false);
+        ExplosionSquare.SetActive(true);
         if (Preprimed)
         {
             DetectExplosion(-1);
@@ -100,10 +103,11 @@ public class Barrel : IPingable
         else
         {
             explodeOnTurn = -1;
+            ExplosionSquare.GetComponent<SpriteRenderer>().color = Invisble;
         }
-        Explosion.SetBool("Explode", false);
-        Sprite.color = Col;
-        base.ResetExplodable();
+        
+        
+       
     }
 
     public override void DetectExplosion(int turn)
