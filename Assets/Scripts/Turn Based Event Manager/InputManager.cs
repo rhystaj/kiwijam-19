@@ -28,12 +28,18 @@ public class InputManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.LeftArrow)) horizontalMovement = -1;
         else if (Input.GetKeyDown(KeyCode.RightArrow)) horizontalMovement = 1;
 
-        if (Input.GetKeyDown(KeyCode.R)) {
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             OnReset();
             blockInput = true;
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Application.Quit();
+        }
 
-        if (verticalMovement != 0 || horizontalMovement != 0)
+            if (verticalMovement != 0 || horizontalMovement != 0)
         {
 
             blockInput = true;

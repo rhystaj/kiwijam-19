@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class EventGrid : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class EventGrid : MonoBehaviour
     [SerializeField] Player player;
 
     [SerializeField] Tilemap tilemap;
+
+    [SerializeField] TileBase tileBaseCompare;
+
+    [SerializeField] int levelbase;
 
     private Explodable[,] cells;
 
@@ -85,6 +90,16 @@ public class EventGrid : MonoBehaviour
 
         Vector2 nextPlayerLocation = PlayerGridLocation + new Vector2(horizontalMovment, verticalMovement);
         Explodable explodableInDestination = cells[(int)nextPlayerLocation.y, (int)nextPlayerLocation.x];
+
+        TileBase tilebase = tilemap.GetTile(new
+            Vector3Int((int)nextPlayerLocation.x - gridSize.x / 2, (int)nextPlayerLocation.y - gridSize.y / 2, 0));
+
+        if(tilebase == tileBaseCompare)
+        {
+            Debug.Log("load new level");
+            SceneManager.LoadScene(levelbase);
+
+        }
 
         Tile.ColliderType colliderType = tilemap.GetColliderType(new
             Vector3Int((int)nextPlayerLocation.x - gridSize.x / 2, (int)nextPlayerLocation.y - gridSize.y / 2, 0));
